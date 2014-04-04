@@ -3,11 +3,11 @@
 %endif
 
 %global upstream_name selenium
-%global upstream_version 2.40.0
+%global upstream_version 2.41.0
 
 Name:          python-%{upstream_name}
 Version:       %{upstream_version}
-Release:       2%{?dist}
+Release:       1%{?dist}
 Summary:       Python bindings for Selenium
 License:       ASL 2.0
 URL:           http://docs.seleniumhq.org/
@@ -90,6 +90,9 @@ rm -f %{buildroot}%{python3_sitelib}/selenium/webdriver/firefox/x86/x_ignore_nof
 %endif
 
 %changelog
+* Fri Apr 04 2014 Dhiru Kholia <dhiru@openwall.com> - 2.41.0-1
+- update to new upstream version
+
 * Thu Feb 27 2014 Dhiru Kholia <dhiru@openwall.com> - 2.40.0-2
 - fixed shebangs (BZ #1070125)
 
