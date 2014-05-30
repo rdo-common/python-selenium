@@ -7,7 +7,7 @@
 
 Name:          python-%{upstream_name}
 Version:       %{upstream_version}
-Release:       1%{?dist}
+Release:       2%{?dist}
 Summary:       Python bindings for Selenium
 License:       ASL 2.0
 URL:           http://docs.seleniumhq.org/
@@ -90,6 +90,9 @@ rm -f %{buildroot}%{python3_sitelib}/selenium/webdriver/firefox/x86/x_ignore_nof
 %endif
 
 %changelog
+* Fri May 30 2014 Matthias Runge <mrunge@redhat.com> - 2.41.0-2
+- rebuilt for python3.4 feature
+
 * Fri Apr 04 2014 Dhiru Kholia <dhiru@openwall.com> - 2.41.0-1
 - update to new upstream version
 
