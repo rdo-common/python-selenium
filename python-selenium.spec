@@ -3,15 +3,14 @@
 %endif
 
 %global upstream_name selenium
-%global upstream_version 2.41.0
 
 Name:          python-%{upstream_name}
-Version:       %{upstream_version}
+Version:       2.42.1
 Release:       2%{?dist}
 Summary:       Python bindings for Selenium
 License:       ASL 2.0
 URL:           http://docs.seleniumhq.org/
-Source0:       http://pypi.python.org/packages/source/s/%{upstream_name}/%{upstream_name}-%{upstream_version}.tar.gz
+Source0:       http://pypi.python.org/packages/source/s/%{upstream_name}/%{upstream_name}-%{version}.tar.gz
 
 BuildRequires: python2-devel
 BuildRequires: python-setuptools
@@ -44,10 +43,10 @@ Several browsers/drivers are supported (Firefox, Chrome, Internet Explorer,
 PhantomJS), as well as the Remote protocol.
 
 %prep
-%setup -qn %{upstream_name}-%{upstream_version}
+%setup -qn %{upstream_name}-%{version}
 rm -r %{upstream_name}.egg-info
 
-find %{_builddir}/%{upstream_name}-%{upstream_version} -type f -name "*.py" -exec sed -i '1{/^#!/d;}' {} \;
+find . -type f -name "*.py" -exec sed -i '1{/^#!/d;}' {} \;
 
 %patch1 -p1
 
@@ -90,8 +89,10 @@ rm -f %{buildroot}%{python3_sitelib}/selenium/webdriver/firefox/x86/x_ignore_nof
 %endif
 
 %changelog
-* Fri May 30 2014 Matthias Runge <mrunge@redhat.com> - 2.41.0-2
+* Fri May 30 2014 Matthias Runge <mrunge@redhat.com> - 2.42.1-1
 - rebuilt for python3.4 feature
+- update to 2.42.1
+- minor specs cleanup
 
 * Fri Apr 04 2014 Dhiru Kholia <dhiru@openwall.com> - 2.41.0-1
 - update to new upstream version
