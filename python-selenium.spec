@@ -6,7 +6,7 @@
 
 Name:          python-%{upstream_name}
 Version:       2.42.1
-Release:       2%{?dist}
+Release:       3%{?dist}
 Summary:       Python bindings for Selenium
 License:       ASL 2.0
 URL:           http://docs.seleniumhq.org/
@@ -89,6 +89,9 @@ rm -f %{buildroot}%{python3_sitelib}/selenium/webdriver/firefox/x86/x_ignore_nof
 %endif
 
 %changelog
+* Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.42.1-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
 * Fri May 30 2014 Matthias Runge <mrunge@redhat.com> - 2.42.1-1
 - rebuilt for python3.4 feature
 - update to 2.42.1
