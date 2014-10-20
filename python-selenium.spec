@@ -5,8 +5,8 @@
 %global upstream_name selenium
 
 Name:          python-%{upstream_name}
-Version:       2.42.1
-Release:       3%{?dist}
+Version:       2.43.0
+Release:       1%{?dist}
 Summary:       Python bindings for Selenium
 License:       ASL 2.0
 URL:           http://docs.seleniumhq.org/
@@ -25,7 +25,7 @@ Summary:       Python bindings for Selenium
 
 BuildRequires: python3-devel
 BuildRequires: python3-setuptools
-Requires:      python-rdflib
+Requires:      python3-rdflib
 BuildArch:     noarch
 
 %description -n python3-%{upstream_name}
@@ -89,6 +89,10 @@ rm -f %{buildroot}%{python3_sitelib}/selenium/webdriver/firefox/x86/x_ignore_nof
 %endif
 
 %changelog
+* Mon Oct 20 2014 Matthias Runge <mrunge@redhat.com> - 2.43.0-1
+- update to 2.43.0
+- correct deps for py3 version (rhbz#1116470)
+
 * Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.42.1-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
 
