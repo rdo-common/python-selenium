@@ -5,7 +5,7 @@
 %global upstream_name selenium
 
 Name:          python-%{upstream_name}
-Version:       2.43.0
+Version:       2.44.0
 Release:       1%{?dist}
 Summary:       Python bindings for Selenium
 License:       ASL 2.0
@@ -89,6 +89,9 @@ rm -f %{buildroot}%{python3_sitelib}/selenium/webdriver/firefox/x86/x_ignore_nof
 %endif
 
 %changelog
+* Mon Feb 23 2015 Matthias Runge <mrunge@redhat.com> - 2.44.0-1
+- update to 2.44.0
+
 * Mon Oct 20 2014 Matthias Runge <mrunge@redhat.com> - 2.43.0-1
 - update to 2.43.0
 - correct deps for py3 version (rhbz#1116470)
