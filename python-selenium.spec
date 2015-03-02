@@ -5,12 +5,12 @@
 %global upstream_name selenium
 
 Name:          python-%{upstream_name}
-Version:       2.44.0
+Version:       2.45.0
 Release:       1%{?dist}
 Summary:       Python bindings for Selenium
 License:       ASL 2.0
 URL:           http://docs.seleniumhq.org/
-Source0:       http://pypi.python.org/packages/source/s/%{upstream_name}/%{upstream_name}-%{version}.tar.gz
+Source0:       https://pypi.python.org/packages/source/s/%{upstream_name}/%{upstream_name}-%{version}.tar.gz
 
 BuildRequires: python2-devel
 BuildRequires: python-setuptools
@@ -89,6 +89,9 @@ rm -f %{buildroot}%{python3_sitelib}/selenium/webdriver/firefox/x86/x_ignore_nof
 %endif
 
 %changelog
+* Mon Mar 02 2015 Matthias Runge <mrunge@redhat.com> - 2.45.0-1
+- update to 2.45.0 to fix compat issues with Firefox 36 (rhbz#1196922)
+
 * Mon Feb 23 2015 Matthias Runge <mrunge@redhat.com> - 2.44.0-1
 - update to 2.44.0
 
