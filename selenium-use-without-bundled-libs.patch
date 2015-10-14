@@ -1,10 +1,10 @@
 diff --git a/py/selenium/webdriver/firefox/firefox_binary.py b/py/selenium/webdriver/firefox/firefox_binary.py
-index 7bb5e9b..f321844 100755
+index 1bf072e..ab7f392 100644
 --- a/py/selenium/webdriver/firefox/firefox_binary.py
 +++ b/py/selenium/webdriver/firefox/firefox_binary.py
-@@ -182,9 +182,12 @@ class FirefoxBinary(object):
-             library_path = os.path.join(profile.path, path)
-             os.makedirs(library_path)
+@@ -188,9 +188,12 @@ class FirefoxBinary(object):
+             if not os.path.exists(library_path):
+                 os.makedirs(library_path)
              import shutil
 -            shutil.copy(os.path.join(os.path.dirname(__file__), path,
 -              self.NO_FOCUS_LIBRARY_NAME),
