@@ -5,23 +5,42 @@
 %global upstream_name selenium
 
 Name:          python-%{upstream_name}
-Version:       2.48.0
-Release:       2%{?dist}
+Version:       2.49.0
+Release:       1%{?dist}
 Summary:       Python bindings for Selenium
 License:       ASL 2.0
 URL:           http://docs.seleniumhq.org/
 Source0:       https://pypi.python.org/packages/source/s/%{upstream_name}/%{upstream_name}-%{version}.tar.gz
 
-BuildRequires: python2-devel
-BuildRequires: python-setuptools
-Requires:      python-rdflib
 BuildArch:     noarch
 
 Patch1:        selenium-use-without-bundled-libs.patch
 
+%description
+The selenium package is used automate web browser interaction from Python.
+
+Several browsers/drivers are supported (Firefox, Chrome, Internet Explorer,
+PhantomJS), as well as the Remote protocol.
+
+%package -n python2-%{upstream_name}
+Summary:       Python bindings for Selenium
+
+%{?python_provide:%python_provide python2-%{upstream_name}}
+BuildRequires: python2-devel
+BuildRequires: python-setuptools
+Requires:      python-rdflib
+
+%description -n python2-%{upstream_name}
+The selenium package is used automate web browser interaction from Python.
+
+Several browsers/drivers are supported (Firefox, Chrome, Internet Explorer,
+PhantomJS), as well as the Remote protocol.
+
+
 %if 0%{?with_python3}
 %package -n python3-%{upstream_name}
 Summary:       Python bindings for Selenium
+%{?python_provide:%python_provide python3-%{upstream_name}}
 
 BuildRequires: python3-devel
 BuildRequires: python3-setuptools
@@ -36,12 +55,6 @@ PhantomJS), as well as the Remote protocol.
 
 %endif # if with_python3
 
-%description
-The selenium package is used automate web browser interaction from Python.
-
-Several browsers/drivers are supported (Firefox, Chrome, Internet Explorer,
-PhantomJS), as well as the Remote protocol.
-
 %prep
 %setup -qn %{upstream_name}-%{version}
 rm -r %{upstream_name}.egg-info
@@ -50,7 +63,7 @@ find . -type f -name "*.py" -exec sed -i '1{/^#!/d;}' {} \;
 
 %patch1 -p1
 
-%if %{with python3}
+%if %{?with_python3} > 0
 rm -rf %{py3dir}
 cp -a . %{py3dir}
 %endif
@@ -58,7 +71,7 @@ cp -a . %{py3dir}
 %build
 %{__python2} setup.py build
 
-%if %{with python3}
+%if %{?with_python3} > 0
 pushd %{py3dir}
 %{__python3} setup.py build
 popd
@@ -70,7 +83,7 @@ popd
 rm -f %{buildroot}%{python2_sitelib}/selenium/webdriver/firefox/amd64/x_ignore_nofocus.so
 rm -f %{buildroot}%{python2_sitelib}/selenium/webdriver/firefox/x86/x_ignore_nofocus.so
 
-%if %{with python3}
+%if %{?with_python3} > 0
 pushd %{py3dir}
 %{__python3} setup.py install --skip-build --root %{buildroot}
 popd
@@ -78,17 +91,21 @@ rm -f %{buildroot}%{python3_sitelib}/selenium/webdriver/firefox/amd64/x_ignore_n
 rm -f %{buildroot}%{python3_sitelib}/selenium/webdriver/firefox/x86/x_ignore_nofocus.so
 %endif
 
-%files
+%files -n python2-%{upstream_name}
 %{python2_sitelib}/*
 %doc py/README
 
-%if %{with python3}
+%if %{?with_python3} > 0
 %files -n python3-%{upstream_name}
 %{python3_sitelib}/*
 %doc py/README
 %endif
 
 %changelog
+* Mon Jan 18 2016 Matthias Runge <mrunge@redhat.com> - 2.49.0-1
+- update to 2.49.0 (rhbz#1298407)
+- spec cleanup, add py2 subpackage
+
 * Wed Nov 04 2015 Robert Kuska <rkuska@redhat.com> - 2.48.0-2
 - Rebuilt for Python3.5 rebuild
 
