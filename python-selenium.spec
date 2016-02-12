@@ -5,8 +5,8 @@
 %global upstream_name selenium
 
 Name:          python-%{upstream_name}
-Version:       2.49.0
-Release:       2%{?dist}
+Version:       2.52.0
+Release:       1%{?dist}
 Summary:       Python bindings for Selenium
 License:       ASL 2.0
 URL:           http://docs.seleniumhq.org/
@@ -93,15 +93,18 @@ rm -f %{buildroot}%{python3_sitelib}/selenium/webdriver/firefox/x86/x_ignore_nof
 
 %files -n python2-%{upstream_name}
 %{python2_sitelib}/*
-%doc py/README
+%doc py/README.rst
 
 %if %{?with_python3} > 0
 %files -n python3-%{upstream_name}
 %{python3_sitelib}/*
-%doc py/README
+%doc py/README.rst
 %endif
 
 %changelog
+* Fri Feb 12 2016 Matthias Runge <mrunge@redhat.com> - 2.52.0-1
+- update to 2.52.0
+
 * Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 2.49.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
