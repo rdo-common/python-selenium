@@ -5,7 +5,7 @@
 %global upstream_name selenium
 
 Name:          python-%{upstream_name}
-Version:       2.52.0
+Version:       2.53.2
 Release:       1%{?dist}
 Summary:       Python bindings for Selenium
 License:       ASL 2.0
@@ -102,6 +102,9 @@ rm -f %{buildroot}%{python3_sitelib}/selenium/webdriver/firefox/x86/x_ignore_nof
 %endif
 
 %changelog
+* Wed May 18 2016 Matthias Runge <mrunge@redhat.com> - 2.53.2-1
+- update to 2.53.2
+
 * Fri Feb 12 2016 Matthias Runge <mrunge@redhat.com> - 2.52.0-1
 - update to 2.52.0
 
