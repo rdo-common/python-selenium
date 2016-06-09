@@ -6,7 +6,7 @@
 
 Name:          python-%{upstream_name}
 Version:       2.53.2
-Release:       1%{?dist}
+Release:       1.1%{?dist}
 Summary:       Python bindings for Selenium
 License:       ASL 2.0
 URL:           http://docs.seleniumhq.org/
@@ -63,7 +63,7 @@ find . -type f -name "*.py" -exec sed -i '1{/^#!/d;}' {} \;
 
 %patch1 -p1
 
-%if %{?with_python3} > 0
+%if 0%{?with_python3}
 rm -rf %{py3dir}
 cp -a . %{py3dir}
 %endif
@@ -71,7 +71,7 @@ cp -a . %{py3dir}
 %build
 %{__python2} setup.py build
 
-%if %{?with_python3} > 0
+%if 0%{?with_python3}
 pushd %{py3dir}
 %{__python3} setup.py build
 popd
@@ -83,7 +83,7 @@ popd
 rm -f %{buildroot}%{python2_sitelib}/selenium/webdriver/firefox/amd64/x_ignore_nofocus.so
 rm -f %{buildroot}%{python2_sitelib}/selenium/webdriver/firefox/x86/x_ignore_nofocus.so
 
-%if %{?with_python3} > 0
+%if 0%{?with_python3}
 pushd %{py3dir}
 %{__python3} setup.py install --skip-build --root %{buildroot}
 popd
@@ -95,13 +95,16 @@ rm -f %{buildroot}%{python3_sitelib}/selenium/webdriver/firefox/x86/x_ignore_nof
 %{python2_sitelib}/*
 %doc py/README.rst
 
-%if %{?with_python3} > 0
+%if 0%{?with_python3}
 %files -n python3-%{upstream_name}
 %{python3_sitelib}/*
 %doc py/README.rst
 %endif
 
 %changelog
+* Fri Jun 10 2016 Alan Pevec <apevec AT redhat.com> - 2.53.2-1.1
+- fix conditionals for EL7
+
 * Wed May 18 2016 Matthias Runge <mrunge@redhat.com> - 2.53.2-1
 - update to 2.53.2
 
